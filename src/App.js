@@ -2,6 +2,7 @@ import Navbar from "./Components/Navbar";
 
 import {Routes,Route}from 'react-router-dom'
 import { publicRoutes } from "./Routes/publicRoutes";
+import Footer from "./Components/Footer";
 
 function App() {
  
@@ -20,14 +21,9 @@ function App() {
           {publicRoutes.map(({path,Component},index)=>
              <Route key={index} path={path} element={<Component/>}  />)}
         </Routes>
-      
- 
-      
-    
-       
-     
 
       </Navbar>
+      <Footer/>
 
     </>
   );
