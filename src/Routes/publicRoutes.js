@@ -13,5 +13,5 @@ import Tools from "../Pages/Tools";
     {path:'/porfolio' , name:'Portfolio',Component:Portfolio},
     {path:'/contact' , name:'Contact',Component:Contact},
     {path:'/login' , name:'Login',Component:Login},
-    {path:'/purchase/:id' , name:'Purchase',Component:Purchase},
+    {path:'/tools/:id' , name:'Purchase',Component:Purchase},
   ] 

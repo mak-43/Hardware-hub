@@ -8,7 +8,7 @@ const Tools = () => {
 
     // const [tools,setTools]=useState([])
     
-    const {isLoading,error,data:tools}=useQuery('tools',()=>fetch('http://localhost:5000/tools').then(res=>res.json()))
+    const {isLoading,error,data:tools}=useQuery('tools',()=>fetch('http://localhost:5000/tools',[tools]).then(res=>res.json()))
     if(isLoading)
     {
         return <Loading/>
@@ -19,7 +19,7 @@ const Tools = () => {
             <div className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-3 '>
             {
               tools.map(t=><ToolCard
-                key={t.id}
+                key={t._id}
                 tools={t}
                 
                 ></ToolCard>)

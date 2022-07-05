@@ -1,15 +1,23 @@
 import React, { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Loading from '../Components/Loading';
 const Purchase = () => {
-    const [product, setProduct] = useState([])
+    // const [product, setProduct] = useState([])
     const [q,setQ]=useState()
     const { id } = useParams()
-    useEffect(() => {
-        fetch(`Tools.json/${id}`)
-            .then(res => res.json())
-            .then(data => setProduct(data))
-    }, [])
+    // useEffect(() => {
+    //     fetch(`Tools.json/${id}`)
+    //         .then(res => res.json())
+    //         .then(data => setProduct(data))
+    // }, [])
+
+    const {isLoading,error,data:product}=useQuery('tools',()=>fetch(`http://localhost:5000/tools/${id}`).then(res=>res.json()))
+    if(isLoading)
+    {
+        return <Loading/>
+    }
 
     const handleQuantity=e=>{
         e.preventDefault();
@@ -34,7 +42,7 @@ const Purchase = () => {
             purchase : {product.length}
             <div className='grid md:grid-cols-2 sm:grid-cols-1'>
                 <div class="card w-96 bg-base-100 shadow-xl mx-2 mx-auto p-2">
-                    <figure><img className='rounded' src={product.img} alt="Shoes" /></figure>
+                    <figure><img  style={{height:'300px',width:'100%'}}className='rounded' src={product.img} alt="Shoes" /></figure>
                     <div class="card-body">
                         <h2 class="card-title">{product.name}</h2>
                         <p>{product.description}</p>

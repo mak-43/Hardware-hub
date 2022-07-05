@@ -3,7 +3,7 @@ import i from '../Assets/Images/b1.jpg'
 import Modal from '../Components/Modal';
 import { useNavigate } from 'react-router-dom';
 const ToolCard = ({ tools }) => {
-    const { name, img, description, minimum, available, price,id } = tools
+    const { name, img, description, minimum, available, price,_id } = tools
     const navigate = useNavigate()
     return (
         <div>
@@ -15,7 +15,7 @@ const ToolCard = ({ tools }) => {
                     <p><span>Price: </span>{price}</p>
                     <p><span>Stock: </span>{available}</p>
 
-                    <button onClick={() => navigate(`/purchase/${id}`)} className='btn btn-primary'>Buy now</button>
+                    <button onClick={() => navigate(`/tools/${_id}`)} className='btn btn-primary'>Buy now</button>
 
 
                 </div>
