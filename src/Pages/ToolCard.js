@@ -8,7 +8,7 @@ const ToolCard = ({ tools }) => {
     return (
         <div>
             <div class="card w-96 bg-base-100 shadow-xl mx-2 mx-auto p-2">
-                <figure><img className='rounded' src={img} alt="Shoes" /></figure>
+                <figure><img className='rounded' src={img} style={{height:'300px',width:'100%'}} alt="Shoes" /></figure>
                 <div class="card-body">
                     <h2 class="card-title">{name}</h2>
                     <p>{description}</p>
