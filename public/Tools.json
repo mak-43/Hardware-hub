@@ -1,0 +1,112 @@
+[
+    {   
+        
+        "id":"1",
+        "name":"Drill Machine",
+        "img":"https://i.ibb.co/WyY1Jd9/drill.jpg",
+        "description":"Super easy to use",
+        "minimum":"80",
+        "available":"500",
+        "price":"300"
+    },
+    {
+        "id":"2",
+        "name":"Hammer",
+        "img":"https://i.ibb.co/sbKzdJ9/hammer.jpg",
+        "description":"Robust",
+        "minimum":"100",
+        "available":"900",
+        "price":"200"
+    },
+    {
+        "id":"3",
+        "name":"Pliers",
+        "img":"https://i.ibb.co/4NnLN7x/pliers.jpg",
+        "description":"Multiusage",
+        "minimum":"70",
+        "available":"300",
+        "price":"400"
+    },
+    {
+        "id":"4",
+        "name":"Measurment Tap",
+        "img":"https://i.ibb.co/QvSkvBX/measuring.jpg",
+        "description":"Measure Upto 15'",
+        "minimum":"150",
+        "available":"900",
+        "price":"100"
+    },
+    {
+        "id":"5",
+        "name":"Paint Roller",
+        "img":"https://i.ibb.co/DCMJq9K/paintbrush.jpg",
+        "description":"Fast coloring wall",
+        "minimum":"60",
+        "available":"25000",
+        "price":"350"
+    },
+    {
+        "id":"6",
+        "name":"Chisel",
+        "img":"https://i.ibb.co/c2Mf9Dv/Chisel.jpg",
+        "description":"Sculpture on wooden ",
+        "minimum":"150",
+        "available":"2500",
+        "price":"250"
+    },
+    {
+        "id":"7",
+        "name":"Electric saw",
+        "img":"https://i.ibb.co/H40MJs1/electric-saw.jpg",
+        "description":"Fast cutting",
+        "minimum":"150",
+        "available":"1400",
+        "price":"140"
+    },
+    {
+        "id":"8",
+        "name":"Hacksaw",
+        "img":"https://i.ibb.co/kcPZ8KW/hacksaw.jpg",
+        "description":"Resize your wooden products ",
+        "minimum":"190",
+        "available":"2700",
+        "price":"180"
+    },
+    {
+        "id":"9",
+        "name":"Flash Lights",
+        "img":"https://i.ibb.co/RzgY5xn/light.jpg",
+        "description":"heavy powerfull",
+        "minimum":"300",
+        "available":"2300",
+        "price":"200"
+    },
+    {
+        "id":"10",
+        "name":"Wrench",
+        "img":"https://i.ibb.co/pwh6d70/wrench.jpg",
+        "description":"Adjustable ",
+        "minimum":"200",
+        "available":"1500",
+        "price":"280"
+    },
+    {
+        "id":"11",
+        "name":"Screw Driver",
+        "img":"https://i.ibb.co/TMbQnGY/screw.jpg",
+        "description":"Easy to use ",
+        "minimum":"170",
+        "available":"2800",
+        "price":"150"
+    }
+]
+
+
+
+
+
+
+
+
+
+

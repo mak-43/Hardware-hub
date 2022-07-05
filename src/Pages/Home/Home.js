@@ -1,7 +1,8 @@
 import React from 'react';
-import Contact from '../Contact';
+import Tools from '../Tools';
 import Contuct from './Contuct';
 import Landing from './Landing';
+
 
 
 const Home = () => {
@@ -9,6 +10,8 @@ const Home = () => {
         <div>
             <Landing/>
             <Contuct/>
+            <Tools/>
+         
         </div>
     );
 };
