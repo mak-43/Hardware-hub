@@ -8,7 +8,7 @@ const Tools = () => {
 
     // const [tools,setTools]=useState([])
     
-    const {isLoading,error,data:tools}=useQuery('tools',()=>fetch('http://localhost:5000/tools',[tools]).then(res=>res.json()))
+    const {isLoading,error,data:tools}=useQuery('tool',()=>fetch('http://localhost:5000/tools').then(res=>res.json()))
     if(isLoading)
     {
         return <Loading/>
