@@ -1,6 +1,18 @@
 import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom'
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Link, NavLink,useNavigate } from 'react-router-dom'
+import auth from '../firebase.init';
+import {signOut} from 'firebase/auth'
+
 const Navbar = ({ children }) => {
+    const [user, loading, error] = useAuthState(auth);
+    const navigate=useNavigate()
+    const logout=()=>{
+        signOut(auth)
+        navigate('/login')
+
+    }
+
     const [dark,setDark]=useState(false)
     const menu = <>
         <li><NavLink to='/' className='rounded-lg'>Home</NavLink></li>
@@ -8,7 +20,7 @@ const Navbar = ({ children }) => {
         <li><NavLink to='/dashboard' className='rounded-lg'>Dashboard</NavLink></li>
         <li><NavLink to='/portfolio' className='rounded-lg '>Portfolio</NavLink></li>
         <li><NavLink to='/contact' className='rounded-lg'>Contact</NavLink></li>
-        <li><NavLink to='/login' className='rounded-lg'>Login</NavLink></li>
+        <li>{user? <i onClick={logout} class="fa-solid fa-right-from-bracket rounded-lg"></i> :<NavLink to='/login' className='rounded-lg'>Login</NavLink>}</li>
         
         <label class="swap swap-rotate">
 

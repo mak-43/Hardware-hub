@@ -1,17 +1,50 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link ,useNavigate,useLocation} from 'react-router-dom'
 import auth from '../firebase.init';
-import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
-
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
-const Login = () => {
-    const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+import Loading from '../Components/Loading';
 
-    if (user) {
-        console.log(user)
-    }
+const Login = () => {
+    const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+      ] = useSignInWithEmailAndPassword(auth);
+      const [sendPasswordResetEmail, sending, perror] = useSendPasswordResetEmail(
+        auth
+      );
+    
+      let email 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+    const onSubmit = data => {
+        console.log(data)
+        email=data.email
+        signInWithEmailAndPassword(data.email,data.password)
+    };
+    const navigate= useNavigate()
+    const location = useLocation()
+    let signInError;
+    
+    let from =location.state?.from?.pathname|| '/'
+
+    if(gloading||loading){
+        return <Loading></Loading>
+    }
+
+
+    if (user||guser) {
+        console.log(user)
+        navigate(from,{replace:true})
+    }
+   
+    if(gerror||error||perror){
+        signInError= <p className='text-red-500'><small>{error?.message||gerror?.message||perror?.message}</small></p>
+    }
+
+
     return (
         <div>
             <div className='flex justify-center bg-accent items-center h-screen'>
@@ -22,7 +55,7 @@ const Login = () => {
                         <h1 className='text-3xl text-center '>Login to continue</h1>
                         <form onSubmit={handleSubmit(onSubmit)}>
 
-                            <div className="form-control w-full max-w-xs">
+                            
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
@@ -45,8 +78,8 @@ const Login = () => {
                                     {errors.email?.type === 'required' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
                                     {errors.email?.type === 'pattern' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
                                 </label>
-                            </div>
-                            <div className="form-control w-full max-w-xs">
+                       
+                     
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
@@ -69,13 +102,19 @@ const Login = () => {
                                     {errors.password?.type === 'required' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
                                     {errors.password?.type === 'minLength' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
                                 </label>
-                            </div>
-
-                           
-                            <input className='btn w-full max-w-xs bg-primary text-white' type="submit" value="Login" />
+                   
+                            
+                            {signInError}
+                            
+                            <input className='btn btn-primary w-full max-w-xs  text-white' type="submit" value="Login" />
                         </form>
-                        <p>New to this site ? <Link to='/signup'>Sign Up</Link>  </p>
-                        <p>Forget Password ? <Link to=''>Reset Password</Link> </p>
+                        <p>New to this site ? <Link to='/signup' className='text-cyan-400'><small>Sign Up</small></Link>  </p>
+                        <p>Forget Password ? <Link to='' 
+                         onClick={async () => {
+                            await sendPasswordResetEmail(email);
+                            
+                          }}
+                        className='text-cyan-400'><small>Reset Password</small></Link> </p>
                         <div class="divider">OR</div>
                         <button
                             onClick={() => signInWithGoogle()}
