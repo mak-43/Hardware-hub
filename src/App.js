@@ -7,6 +7,11 @@ import { ToastContainer } from "react-toastify";
 import PrivateRoute from "./Authentication/PrivateRoute";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import { PrivateRoutes } from "./Routes/PrivateRoutes";
+import AddAdmin from "./Pages/Dashboard/AddAdmin";
+import Profile from "./Pages/Dashboard/Profile";
+import ManageOrder from "./Pages/Dashboard/ManageOrder";
+import AllUser from "./Pages/Dashboard/AllUser";
+import ManageProduct from "./Pages/Dashboard/ManageProduct";
 
 function App() {
 
@@ -32,6 +37,15 @@ function App() {
             <Route key={index} path={path} element={<Component />} />)}
           </Route> 
          
+         <Route element={<PrivateRoute/>}>
+            <Route path="/dashboard" element={<Dashboard/>}>
+                <Route path="profile" element={<Profile/>}/>
+                <Route path="admin" element={<AddAdmin/>}/>
+                <Route path="manage" element={<ManageOrder/>}/>
+                <Route path="users" element={<AllUser/>}/>
+                <Route path="products" element={<ManageProduct/>}/>
+            </Route>
+         </Route>
 
         </Routes>
       </Navbar>

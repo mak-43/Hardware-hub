@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { Link ,useNavigate,useLocation} from 'react-router-dom'
 import auth from '../firebase.init';
-import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useAuthState, useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
 import Loading from '../Components/Loading';
+import { toast } from 'react-toastify';
 
 const Login = () => {
     const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
+    const [nuser, nloading, nerror] = useAuthState(auth);
     const [
         signInWithEmailAndPassword,
         user,
@@ -16,13 +18,13 @@ const Login = () => {
       const [sendPasswordResetEmail, sending, perror] = useSendPasswordResetEmail(
         auth
       );
+    const[email,setEmail]=useState()
     
-      let email 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
-        console.log(data)
-        email=data.email
+        setEmail(data.email)
         signInWithEmailAndPassword(data.email,data.password)
+       
     };
     const navigate= useNavigate()
     const location = useLocation()
@@ -30,12 +32,12 @@ const Login = () => {
     
     let from =location.state?.from?.pathname|| '/'
 
-    if(gloading||loading){
+    if(gloading||loading||nloading){
         return <Loading></Loading>
     }
 
 
-    if (user||guser) {
+    if (user||guser||nuser) {
         console.log(user)
         navigate(from,{replace:true})
     }
@@ -43,8 +45,21 @@ const Login = () => {
     if(gerror||error||perror){
         signInError= <p className='text-red-500'><small>{error?.message||gerror?.message||perror?.message}</small></p>
     }
-
-
+    console.log(email)
+    const resetPassword = async ( ) => {
+        
+        
+        if (user) {
+        await sendPasswordResetEmail(user);
+            toast('Sent email');
+            
+        }
+        else {
+            toast('Please enter your email')
+          
+        }
+    }
+   
     return (
         <div>
             <div className='flex justify-center bg-accent items-center h-screen'>
@@ -60,6 +75,8 @@ const Login = () => {
                                     <span className="label-text">Email</span>
                                 </label>
                                 <input
+                              
+
                                     type="email"
                                     placeholder="Your Email"
                                     className="input input-bordered w-full max-w-xs"
@@ -110,10 +127,7 @@ const Login = () => {
                         </form>
                         <p>New to this site ? <Link to='/signup' className='text-cyan-400'><small>Sign Up</small></Link>  </p>
                         <p>Forget Password ? <Link to='' 
-                         onClick={async () => {
-                            await sendPasswordResetEmail(email);
-                            
-                          }}
+                         onClick= {resetPassword}
                         className='text-cyan-400'><small>Reset Password</small></Link> </p>
                         <div class="divider">OR</div>
                         <button

@@ -7,7 +7,7 @@ import Loading from '../Components/Loading';
 
 import axios from 'axios'
 const Purchase = () => {
-
+   
     const [q, setQ] = useState()
     const [p,setP]=useState()
     const { id } = useParams()
@@ -91,7 +91,7 @@ const Purchase = () => {
                             <input  type="number" placeholder="Add Quantity " name='quantity' className="input input-bordered input-secondary w-full max-w-xs"
                                 required=""
                             />
-                            <button type='submit' className=" text-white bg-gradient-to-r from-primary to-secondary border-2 border-secondary hover:border-2 hover:border-primary hover:bg-gradient hover:from-white hover:to-white hover:text-primary transition-all transition-duration:150ms font-medium hover:font-medium px-5 py-[10px] rounded-md ml-2">Proceed</button>
+                            <button type='submit' className=" text-white bg-gradient-to-r from-primary to-secondary border-2 border-secondary hover:border-2 hover:border-primary hover:bg-gradient hover:from-white hover:to-white hover:text-primary transition-all transition-duration:150ms font-medium hover:font-medium px-5 py-[10px] rounded-md  mt-5">Proceed</button>
                         </form>
 
 
@@ -135,7 +135,7 @@ const Purchase = () => {
 
                                 <input 
                                 disabled={q?'':'true'}
-                                class="btn btn-primary" type="submit" />
+                                class="btn btn-primary mt-5" type="submit" />
                             </form>
 
                            

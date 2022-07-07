@@ -1,11 +1,11 @@
 import React from 'react';
-
+import DashboardSlider from './DashboardSlider';
+import { Outlet} from 'react-router-dom'
 const Dashboard = () => {
     return (
-        <div>
-            Dashboard
-            <h1></h1>
-        </div>
+       <DashboardSlider>
+        <Outlet/>
+       </DashboardSlider>
     );
 };
 
