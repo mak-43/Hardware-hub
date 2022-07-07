@@ -17,7 +17,7 @@ const Navbar = ({ children }) => {
     const menu = <>
         <li><NavLink to='/' className='rounded-lg'>Home</NavLink></li>
         <li><NavLink to='/tools' className='rounded-lg '>Tools</NavLink></li>
-        <li><NavLink to='/dashboard' className='rounded-lg'>Dashboard</NavLink></li>
+        <li><NavLink to='/dashboard/profile' className='rounded-lg'>Dashboard</NavLink></li>
         <li><NavLink to='/portfolio' className='rounded-lg '>Portfolio</NavLink></li>
         <li><NavLink to='/contact' className='rounded-lg'>Contact</NavLink></li>
         <li>{user ? <i onClick={logout} class="fa-solid fa-right-from-bracket rounded-lg"></i> : <NavLink to='/login' className='rounded-lg'>Login</NavLink>}</li>
