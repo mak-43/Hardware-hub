@@ -3,9 +3,8 @@ import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Loading from '../Components/Loading';
-
-
 import axios from 'axios'
+
 const Purchase = () => {
    
     const [q, setQ] = useState()
@@ -26,6 +25,7 @@ const Purchase = () => {
            await axios.post("http://localhost:5000/order",inputData).then((res) =>{ console.log(res)
            toast.success(`Order placed`);
         });
+        
         console.log(inputData)
        
        

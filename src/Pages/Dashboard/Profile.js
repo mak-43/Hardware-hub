@@ -2,10 +2,20 @@ import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import ProfileModal from './ProfileModal';
+import { useQuery } from 'react-query';
+import Loading from '../../Components/Loading';
+
 const Profile = () => {
-    const [user, loading, error] = useAuthState(auth);
+    const [user, loading] = useAuthState(auth);
     const [modal,setModal]=useState(null)
-    console.log(user)
+
+    const {isLoading,error,data:pro,refetch}=useQuery('modal',()=>fetch('http://localhost:5000/userpro').then(res=>res.json()))
+    if(isLoading)
+    {
+        return <Loading/>
+    }
+  const {education,location,phone,linkdin}=pro[0]
+   console.log(pro)
     return (
         <div>
             <div>
@@ -21,18 +31,18 @@ const Profile = () => {
                             </div>
                         </div>
                         <h2 class="card-title">{user?.displayName}</h2>
-                        <p>{user?.email}</p>
-                        <p></p>
-                        <p></p>
-                        <p></p>
-                        <p></p>
-                        <p></p>
+                        <p><i class="fa-solid fa-envelope mr-2"></i>{user?.email}</p>
+                        <p><i class="fa-solid fa-graduation-cap"></i> {education}</p>
+                        <p><i class="fa-solid fa-location-dot"></i> {location}</p>
+                        <p><i class="fa-brands fa-linkedin"></i> {linkdin}</p>
+                        <p><i class="fa-solid fa-phone"></i> {phone}</p>
+                        
                         <label onClick={()=>setModal(user)} for="my-modal-6" class="btn modal-button btn btn-primary">update profile</label>
                         
                     </div>
                 </div>
                 {
-                    modal && <ProfileModal></ProfileModal>
+                    modal && <ProfileModal refetch={refetch} user={user} setModal={setModal}></ProfileModal>
                 }
             </div>
         </div>
