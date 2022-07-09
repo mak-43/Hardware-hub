@@ -1,10 +1,11 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link ,useNavigate,useLocation} from 'react-router-dom'
 import auth from '../firebase.init';
 import { useAuthState, useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
 import Loading from '../Components/Loading';
 import { toast } from 'react-toastify';
+import useToken from '../hooks/useToken';
 
 const Login = () => {
     const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
@@ -26,25 +27,30 @@ const Login = () => {
         signInWithEmailAndPassword(data.email,data.password)
        
     };
+    
+    const [token]=useToken(user||guser||nuser)
     const navigate= useNavigate()
     const location = useLocation()
     let signInError;
     
     let from =location.state?.from?.pathname|| '/'
-
+    useEffect(()=>{
+        if (token) {
+            console.log(user)
+            navigate(from,{replace:true})
+        }
+    },[token,from,navigate])
     if(gloading||loading||nloading){
         return <Loading></Loading>
     }
 
 
-    if (user||guser||nuser) {
-        console.log(user)
-        navigate(from,{replace:true})
-    }
-   
+    
+  
     if(gerror||error||perror){
         signInError= <p className='text-red-500'><small>{error?.message||gerror?.message||perror?.message}</small></p>
     }
+
     console.log(email)
     const resetPassword = async ( ) => {
         

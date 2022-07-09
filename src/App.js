@@ -12,6 +12,8 @@ import Profile from "./Pages/Dashboard/Profile";
 import ManageOrder from "./Pages/Dashboard/ManageOrder";
 import AllUser from "./Pages/Dashboard/AllUser";
 import ManageProduct from "./Pages/Dashboard/ManageProduct";
+import Review from "./Pages/Dashboard/Review";
+import MyOrders from "./Pages/Dashboard/MyOrders";
 
 function App() {
 
@@ -44,6 +46,8 @@ function App() {
                 <Route path="manage" element={<ManageOrder/>}/>
                 <Route path="users" element={<AllUser/>}/>
                 <Route path="products" element={<ManageProduct/>}/>
+                <Route path="review" element={<Review/>}/>
+                <Route path="orders" element={<MyOrders/>}/>
             </Route>
          </Route>
 

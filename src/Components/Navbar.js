@@ -9,6 +9,7 @@ const Navbar = ({ children }) => {
     const navigate = useNavigate()
     const logout = () => {
         signOut(auth)
+        localStorage.removeItem('accessToken')
         navigate('/login')
 
     }
