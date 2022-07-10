@@ -7,19 +7,18 @@ import Loading from '../../Components/Loading';
 
 const Profile = () => {
     const [user, loading] = useAuthState(auth);
-    const [modal,setModal]=useState(null)
-  
-    const {email}=user?.email
+    const [modal, setModal] = useState(null)
 
-    const {isLoading,error,data:pro,refetch}=useQuery('modal',()=>fetch(`http://localhost:5000/userpro?email=${user?.email}`).then(res=>res.json()))
-    if(isLoading)
-    {
-        return <Loading/>
+    const { email } = user?.email
+
+    const { isLoading, error, data: pro, refetch } = useQuery('modal', () => fetch(`https://desolate-bayou-39842.herokuapp.com/userpro?email=${user?.email}`).then(res => res.json()))
+    if (isLoading) {
+        return <Loading />
     }
     refetch()
-   
-//   const {education,location,phone,linkdin}=pro[0]
- console.log(pro)
+
+    //   const {education,location,phone,linkdin}=pro[0]
+    console.log(pro)
     return (
         <div>
             <div>
@@ -40,9 +39,9 @@ const Profile = () => {
                         <p><i class="fa-solid fa-location-dot"></i> {pro[0]?.location}</p>
                         <p><i class="fa-brands fa-linkedin"></i> {pro[0]?.linkdin}</p>
                         <p><i class="fa-solid fa-phone mb-4"></i> {pro[0]?.phone}</p>
-                        
-                        <label onClick={()=>setModal(user)} for="my-modal-6" class="btn modal-button btn btn-primary">update profile</label>
-                        
+
+                        <label onClick={() => setModal(user)} for="my-modal-6" class="btn modal-button btn btn-primary">update profile</label>
+
                     </div>
                 </div>
                 {

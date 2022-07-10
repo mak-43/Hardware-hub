@@ -1,42 +1,43 @@
 import React from 'react';
-import axios from 'axios' 
+import axios from 'axios'
 import { toast } from 'react-toastify';
 
-const ProfileModal = ({ user, setModal,refetch }) => {
+const ProfileModal = ({ user, setModal, refetch }) => {
 
-    const handleSubmit =async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         const info = {
-           email:user.email,
-            education : e.target.education.value,
-            location : e.target.location.value,
-            phone : e.target.phone.value,
-            linkdin : e.target.linkdin.value
+            email: user.email,
+            education: e.target.education.value,
+            location: e.target.location.value,
+            phone: e.target.phone.value,
+            linkdin: e.target.linkdin.value
         }
         console.log(info)
-        
-    //    await axios.post('http://localhost:5000/updatepro',info).then(res=>{
-    //     console.log(res)
-    //     toast.success(`Profile updated`);
-    //    })
-    const url = `http://localhost:5000/updatepro`
-    fetch(url, {
-        method: 'put',//thakle update korbe na thakle add koreb put
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify(info)
-    })
-        .then(res => res.json())
-        .then(data => {
-            console.log('success', data)
-            toast('Profile updated')
 
+        //    await axios.post('https://desolate-bayou-39842.herokuapp.com/updatepro',info).then(res=>{
+        //     console.log(res)
+        //     toast.success(`Profile updated`);
+        //    })
+        const url = `https://desolate-bayou-39842.herokuapp.com/updatepro`
+        fetch(url, {
+            method: 'put',//thakle update korbe na thakle add koreb put
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(info)
         })
-        setModal(null)
+            .then(res => res.json())
+            .then(data => {
+                console.log('success', data)
+                toast('Profile updated')
+
+            })
         refetch()
+        setModal(null)
+
     }
-        
+
 
     return (
         <div>
