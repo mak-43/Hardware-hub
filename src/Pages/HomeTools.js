@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../Components/Loading';
-
 import ToolCard from './ToolCard';
+import { useNavigate } from 'react-router-dom'
 
-const Tools = () => {
-
-    // const [tools,setTools]=useState([])
-
-    const { isLoading, error, data: tools, refetch } = useQuery('tool', () => fetch('https://desolate-bayou-39842.herokuapp.com/tools').then(res => res.json()))
+const HomeTools = () => {
+    const navigate = useNavigate()
+    const { isLoading, error, data: tools, refetch } = useQuery('update', () => fetch('https://desolate-bayou-39842.herokuapp.com/updatetools').then(res => res.json()))
     if (isLoading) {
         return <Loading />
     }
@@ -26,8 +24,9 @@ const Tools = () => {
                 }
 
             </div>
+            <button className='flex justify-center items-center mt-10  btn mx-auto'>  <p onClick={() => navigate('/tools')} >SEE MORE ...</p></button>
         </div>
     );
 };
 
-export default Tools;
+export default HomeTools;

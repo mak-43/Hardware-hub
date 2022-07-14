@@ -15,15 +15,15 @@ const Profile = () => {
     if (isLoading) {
         return <Loading />
     }
-    refetch()
+
 
     //   const {education,location,phone,linkdin}=pro[0]
-    console.log(pro)
+   
     return (
         <div>
             <div>
 
-                <h1 className='text-2xl my-5 font-serif font-bold'>Welcome to your profile</h1>
+                <h1 className='text-2xl my-5 font-serif font-bold text-center'>Welcome to your profile</h1>
 
                 <div class="card w-96 bg-base-100 shadow-xl">
 

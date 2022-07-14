@@ -1,22 +1,30 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 
-const Modal = () => {
-    const [temp,setTemp]=useState(null)
+const Modal = ({ id, refetch, setId }) => {
+
+    const handleDelete = id => {
+        fetch(`https://desolate-bayou-39842.herokuapp.com/order/${id}`, {
+            method: 'DELETE',
+        }).then(res => res.json())
+            .then(data => {
+
+                toast.success('Order deleted')
+                setId(null)
+                refetch()
+            })
+    }
     return (
         <div>
-
-            
-
-            
-            <input type="checkbox" id="my-modal-6" class="modal-toggle" />
+            <input type="checkbox" id="delete-modal" class="modal-toggle" />
             <div class="modal modal-bottom sm:modal-middle">
                 <div class="modal-box">
-                <label for="my-modal-6" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                    <h3 class="font-bold text-lg">Congratulations random Internet user!</h3>
-                    <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
+
+                    <h3 class="font-bold text-lg">Do you want to delete?</h3>
+
                     <div class="modal-action">
-                        <label for="my-modal-6" class="btn">ok</label>
-                        <label for="my-modal-6" onClick={()=>setTemp(1)} class="btn modal-button bg-base-300">Buy now</label>
+                        <label onClick={() => handleDelete(id)} for="delete-modal" class="btn">Yes</label>
+                        <label for="delete-modal" class="btn ">No</label>
                     </div>
                 </div>
             </div>

@@ -85,12 +85,12 @@ const Purchase = () => {
         <div>
             purchase : {product.length}
             <div className='grid md:grid-cols-2 sm:grid-cols-1'>
-                <div class="card w-96 bg-base-100 shadow-xl mx-2 mx-auto p-2">
+                <div class="card md:w-96 sm:w-full bg-base-100 shadow-xl mx-2 mx-auto p-2">
                     <figure><img style={{ height: '300px', width: '100%' }} className='rounded' src={product.img} alt="Shoes" /></figure>
                     <div class="card-body">
                         <h2 class="card-title">{product.name}</h2>
                         <p>{product.description}</p>
-                        <p><span>Price: </span>{product.price}</p>
+                        <p><span>Price: $</span>{product.price}</p>
                         <p><span>Stock: </span>{product.available}</p>
                         <form onSubmit={handleQuantity}>
                             <input type="number" placeholder="Add Quantity " name='quantity' className="input input-bordered input-secondary w-full max-w-xs"

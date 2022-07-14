@@ -1,6 +1,12 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { NavLink } from 'react-router-dom'
-const DashboardSlider = ({children}) => {
+import auth from '../../firebase.init';
+import useAdmin from '../../hooks/useAdmin';
+const DashboardSlider = ({ children }) => {
+    const [user] = useAuthState(auth)
+    const [admin] = useAdmin(user)
+
     return (
         <div class="drawer drawer-mobile">
             <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
@@ -10,17 +16,24 @@ const DashboardSlider = ({children}) => {
                 {children}
             </div>
             <div class="drawer-side">
-                <label for="my-drawer-2" class="drawer-overlay"></label>
+                <label for="my-drawer-2" class="drawer-overlay "></label>
                 <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
                     {/* <!-- Sidebar content here --> */}
-                    <li><NavLink to='profile'>Profile</NavLink></li>
-                    <li><NavLink to='orders'>My Orders</NavLink></li>
-                  
-                    <li><NavLink to='review'>Add A Review</NavLink></li>
-                    <li><NavLink to='admin'>Make Admin</NavLink></li>
-                    <li><NavLink to='manage'>Manage All Oders</NavLink></li>
-                    <li><NavLink to='users'>All Users</NavLink></li>
-                    <li><NavLink to='products'>Manage Products</NavLink></li>
+
+                    {
+                        admin ? <>
+                            <li><NavLink to='profile'>Profile</NavLink></li>
+                            <li><NavLink to='admin'>Make Admin</NavLink></li>
+                            <li><NavLink to='manage'>Manage All Oders</NavLink></li>
+                            <li><NavLink to='products'>Manage Products</NavLink></li>
+                        </> :
+                            <>
+                                <li><NavLink to='profile'>Profile</NavLink></li>
+                                <li><NavLink to='orders'>My Orders</NavLink></li>
+
+                                <li><NavLink to='review'>Add A Review</NavLink></li>
+                            </>
+                    }
 
                 </ul>
 

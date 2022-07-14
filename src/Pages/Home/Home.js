@@ -1,4 +1,5 @@
 import React from 'react';
+import HomeTools from '../HomeTools';
 import Tools from '../Tools';
 import Contuct from './Contuct';
 import Landing from './Landing';
@@ -10,7 +11,8 @@ const Home = () => {
         <div>
             {/* <Landing/> */}
             <Contuct/>
-            <Tools/>
+            <HomeTools/>
+            
          
         </div>
     );

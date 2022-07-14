@@ -10,10 +10,11 @@ import { PrivateRoutes } from "./Routes/PrivateRoutes";
 import AddAdmin from "./Pages/Dashboard/AddAdmin";
 import Profile from "./Pages/Dashboard/Profile";
 import ManageOrder from "./Pages/Dashboard/ManageOrder";
-import AllUser from "./Pages/Dashboard/AllUser";
+
 import ManageProduct from "./Pages/Dashboard/ManageProduct";
 import Review from "./Pages/Dashboard/Review";
 import MyOrders from "./Pages/Dashboard/MyOrders";
+import RequireAdmin from "./Authentication/RequireAdmin";
 
 function App() {
 
@@ -42,12 +43,13 @@ function App() {
          <Route element={<PrivateRoute/>}>
             <Route path="/dashboard" element={<Dashboard/>}>
                 <Route path="profile" element={<Profile/>}/>
-                <Route path="admin" element={<AddAdmin/>}/>
-                <Route path="manage" element={<ManageOrder/>}/>
-                <Route path="users" element={<AllUser/>}/>
-                <Route path="products" element={<ManageProduct/>}/>
                 <Route path="review" element={<Review/>}/>
                 <Route path="orders" element={<MyOrders/>}/>
+                
+                <Route path="admin" element={<RequireAdmin><AddAdmin/></RequireAdmin>}/>
+                <Route path="manage" element={<RequireAdmin><ManageOrder/></RequireAdmin>}/>
+                <Route path="products" element={<RequireAdmin><ManageProduct/></RequireAdmin>}/>
+               
             </Route>
          </Route>
 

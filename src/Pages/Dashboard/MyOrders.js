@@ -1,18 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import Loading from '../../Components/Loading';
 import auth from '../../firebase.init';
 import { useNavigate } from 'react-router-dom'
+import { signOut } from 'firebase/auth'
+
+import Modal from '../../Components/Modal';
 
 const MyOrders = () => {
     const [user, loading] = useAuthState(auth);
+    const [id, setId] = useState(null)
     const navigate = useNavigate()
-    const { isLoading, error, data: orders, refetch } = useQuery('modal', () => fetch(`https://desolate-bayou-39842.herokuapp.com/order?email=${user?.email}`).then(res => res.json()))
+    const { isLoading, error, data: orders, refetch } = useQuery('order', () => fetch(`https://desolate-bayou-39842.herokuapp.com/order?email=${user?.email}`, {
+        method: 'GET',
+        headers: {
+            'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        }
+    }).then(res => {
+        console.log('response', res)
+        if (res.status === 401 || res.status === 403) {
+            signOut(auth)
+            localStorage.removeItem('accessToken')
+            navigate('/login')
+        }
+
+        return res.json()
+
+    }))
+
     if (isLoading) {
         return <Loading />
     }
-    refetch()
+
+
+
     return (
         <div className='h-screen mt-10 w-full'>
             <div class="overflow-x-auto">
@@ -45,7 +67,10 @@ const MyOrders = () => {
                                     <td>{o?.quantity} pices</td>
                                     <td>$ {o?.price}</td>
                                     <td><button onClick={() => navigate(`/payment/${o._id}`)} className='btn hover:bg-blue-300'>Pay</button></td>
-                                    <td><button className='text-red-500 text-xl'><i class="fa-solid fa-delete-left "></i></button></td>
+
+                                    <label onClick={() => setId(`${o?._id}`)} for="delete-modal" class=" cursor-pointer text-red-500 text-xl"><i class="fa-solid fa-delete-left mt-6 ml-5"></i></label>
+
+
                                 </tr>
                             )
                         }
@@ -53,6 +78,9 @@ const MyOrders = () => {
                     </tbody>
                 </table>
             </div>
+            {
+                id && <Modal id={id} setId={setId} refetch={refetch} ></Modal>
+            }
         </div>
     );
 };

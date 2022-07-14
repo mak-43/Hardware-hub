@@ -3,13 +3,21 @@ import { useEffect, useState } from 'react';
 const useToken = (user) => {
     const [token, setToken] = useState('')
     useEffect(() => {
+      
         const email = user?.user?.email
-        const currentUser = { email: email }
+        console.log(user?.user?.photoURL)
+        const currentUser = {
+            email: user?.user?.email,
+            name:user?.user?.displayName,
+            photo:user?.user?.photoURL 
+        }
+        console.log(currentUser)
         if (email) {
             fetch(`https://desolate-bayou-39842.herokuapp.com/user/${email}`, {
                 method: 'put',
                 headers: {
                     'content-type': 'application/json'
+                    
                 },
                 body: JSON.stringify(currentUser)
             })
@@ -22,6 +30,7 @@ const useToken = (user) => {
                 })
         }
         console.log('user inside usetoken', user)
+        console.log(currentUser)
     }, [user])
     return [token]
 };

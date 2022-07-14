@@ -1,9 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-const useAdmin = () => {
-    const [admin,setAdmin]=useState(true)
+const useAdmin = (user) => {
+    const [admin, setAdmin] = useState(false)
+    const [adminLoading, setLoading] = useState(true)
+    const email = user?.email
+    useEffect(() => {
+        fetch(`https://desolate-bayou-39842.herokuapp.com/admin/${email}`, {
+            method: 'GET',
+            headers: {
 
-    return [admin]
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+
+                setAdmin(data.admin)
+                setLoading(false)
+            })
+    }, [user])
+
+    return [admin, adminLoading]
 
 };
 
