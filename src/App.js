@@ -21,7 +21,7 @@ function App() {
 
   return (
     <>
-      <Navbar>
+      <Navbar >
         <Routes>
           {/* <Route path="/" element={  <Home />}></Route>
           <Route path="/tools" element={    <Tools/>}></Route>
@@ -55,7 +55,7 @@ function App() {
 
         </Routes>
       </Navbar>
-      <Footer />
+     
       <ToastContainer />
 
     </>

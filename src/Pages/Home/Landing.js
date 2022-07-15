@@ -1,17 +1,45 @@
 
 import React, { useState } from 'react';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from 'react-responsive-carousel';
 
 import b1 from '../../Assets/Images/b1.jpg'
 import b2 from '../../Assets/Images/b2.jpg'
 import b3 from '../../Assets/Images/b3.jpg'
 
+
 const Landing = () => {
 
+
     return (
-        <div   className=''>
-            <Carousel
+        <div className=''>
+
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="d-block w-100" src="..." alt="First slide"/>
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="..." alt="Second slide"/>
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="..." alt="Third slide"/>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+
+            {/* <Carousel
                 showThumbs={false}
                 // autoPlay={true}
                infiniteLoop={true}
@@ -20,7 +48,7 @@ const Landing = () => {
 
             >
                 <div    >
-                    <img   src={b1} />
+                    <img    src={b1} />
                     <p className="legend">All Hardware are availabe</p>
                 </div>
                 <div>
@@ -31,9 +59,10 @@ const Landing = () => {
                     <img src={b3} />
                     <p className="legend">Latest prettiest </p>
                 </div>
-            </Carousel>
+            </Carousel> */}
 
-            {/* <div class="carousel w-full">
+
+            {/* <div class="carousel w-full ">
                 <div id="item1" class="carousel-item w-full relative">
                     <img src={b1} class="w-full  md:h-full " />
                     <div class="absolute  transform -translate-y-1/2 left-5 right-5 top-1/2">

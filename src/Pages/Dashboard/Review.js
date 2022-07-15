@@ -25,7 +25,7 @@ const Review = () => {
             })
     }
     return (
-        <div className='w-full flex flex-col justify-center items-center'>
+        <div className='w-full h-fit flex flex-col justify-center items-center'>
             <h1 className='text-bold text-2xl my-5'>Add your review</h1>
             <div class="avatar my-5">
                 <div class="w-24  rounded-full flex justify-center items-center mx-auto ">

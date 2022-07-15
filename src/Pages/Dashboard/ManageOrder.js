@@ -28,7 +28,7 @@ const ManageOrder = () => {
     return (
         <div className='h-screen mt-20 w-full'>
             <div class="overflow-x-auto">
-                <table class="table w-full">
+                <table class="table w-full h-full">
 
                     <thead>
                         <tr>
@@ -58,16 +58,16 @@ const ManageOrder = () => {
                                     <td>{o?.pname}</td>
                                     <td>{o?.quantity} pices</td>
                                     <td>$ {o?.price}</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>Pending</td>
+                                    <td>Shipped</td>
                                     <td>
                                         {
                                             (o?.price && !o?.paid) && <button onClick={() => navigate(`/payment/${o._id}`)} className='btn hover:bg-blue-300'>Pay</button>
                                         }
                                         {
-                                            (o?.price && o?.paid) && <div>
+                                            (o?.price && o?.paid) && <div className='flex flex-col'>
                                                 <p><span className='text-success'>Paid</span> </p>
-                                                <p>Transaction id: <span className='text-success'>{o?.tid}</span></p>
+                                                <p>T id: <span className='text-success'>{o?.tid}</span></p>
                                             </div>
                                         }
                                     </td>

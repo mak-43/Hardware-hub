@@ -36,7 +36,7 @@ const MyOrders = () => {
 
 
     return (
-        <div className='h-screen mt-10 w-full'>
+        <div className='h-fit mt-10 w-full'>
             <div class="overflow-x-auto">
                 <table class="table w-full">
 

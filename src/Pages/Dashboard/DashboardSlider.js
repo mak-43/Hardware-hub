@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { NavLink } from 'react-router-dom'
+import Footer from '../../Components/Footer';
 import auth from '../../firebase.init';
 import useAdmin from '../../hooks/useAdmin';
 const DashboardSlider = ({ children }) => {
@@ -8,7 +9,7 @@ const DashboardSlider = ({ children }) => {
     const [admin] = useAdmin(user)
 
     return (
-        <div class="drawer drawer-mobile">
+        <div class="drawer drawer-mobile ">
             <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
             <div class="drawer-content flex flex-col items-center justify-center">
                 {/* <!-- Page content here --> */}
@@ -38,6 +39,7 @@ const DashboardSlider = ({ children }) => {
                 </ul>
 
             </div>
+          
         </div>
     );
 };

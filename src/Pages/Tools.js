@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
+import Footer from '../Components/Footer';
 import Loading from '../Components/Loading';
 
 import ToolCard from './ToolCard';
@@ -14,7 +15,7 @@ const Tools = () => {
     }
     refetch()
     return (
-        <div className='my-10'>
+        <div className='mt-10'>
             <h1 className='text-4xl font-semibold text-center py-5 '>Our Latest Tools</h1>
             <div className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-3 '>
                 {
@@ -26,6 +27,7 @@ const Tools = () => {
                 }
 
             </div>
+            <Footer/>
         </div>
     );
 };

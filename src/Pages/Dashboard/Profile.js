@@ -4,6 +4,7 @@ import auth from '../../firebase.init';
 import ProfileModal from './ProfileModal';
 import { useQuery } from 'react-query';
 import Loading from '../../Components/Loading';
+import Footer from '../../Components/Footer';
 
 const Profile = () => {
     const [user, loading] = useAuthState(auth);
@@ -20,7 +21,7 @@ const Profile = () => {
     //   const {education,location,phone,linkdin}=pro[0]
    
     return (
-        <div>
+        <div className='h-fit'>
             <div>
 
                 <h1 className='text-2xl my-5 font-serif font-bold text-center'>Welcome to your profile</h1>
@@ -48,6 +49,7 @@ const Profile = () => {
                     modal && <ProfileModal refetch={refetch} user={user} setModal={setModal}></ProfileModal>
                 }
             </div>
+            
         </div>
     );
 };
