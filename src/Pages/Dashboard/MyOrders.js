@@ -12,7 +12,7 @@ const MyOrders = () => {
     const [user, loading] = useAuthState(auth);
     const [id, setId] = useState(null)
     const navigate = useNavigate()
-    const { isLoading, error, data: orders, refetch } = useQuery('order', () => fetch(`https://desolate-bayou-39842.herokuapp.com/order?email=${user?.email}`, {
+    const { isLoading, error, data: orders, refetch } = useQuery('order', () => fetch(`http://localhost:5000/order?email=${user?.email}`, {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -66,9 +66,19 @@ const MyOrders = () => {
                                     <td>{o?.pname}</td>
                                     <td>{o?.quantity} pices</td>
                                     <td>$ {o?.price}</td>
-                                    <td><button onClick={() => navigate(`/payment/${o._id}`)} className='btn hover:bg-blue-300'>Pay</button></td>
+                                    <td> {
+                                            (o?.price && !o?.paid) && <button onClick={() => navigate(`/payment/${o._id}`)} className='btn hover:bg-blue-300'>Pay</button>
+                                        }
+                                        {
+                                            (o?.price && o?.paid) && <div>
+                                                <p><span className='text-success'>Paid</span> </p>
+                                                <p>Transaction id: <span className='text-success'>{o?.tid}</span></p>
+                                            </div>
+                                        }</td>
 
-                                    <label onClick={() => setId(`${o?._id}`)} for="delete-modal" class=" cursor-pointer text-red-500 text-xl"><i class="fa-solid fa-delete-left mt-6 ml-5"></i></label>
+                                   {
+                                    !o?.paid &&  <label onClick={() => setId(`${o?._id}`)} for="delete-modal" class=" cursor-pointer text-red-500 text-xl"><i class="fa-solid fa-delete-left mt-6 ml-5"></i></label>
+                                   }
 
 
                                 </tr>

@@ -16,7 +16,9 @@ const ManageOrder = () => {
         }
     }).then(res => {
         refetch()
+
         return res.json()
+
 
     }))
     if (isLoading) {
@@ -58,7 +60,17 @@ const ManageOrder = () => {
                                     <td>$ {o?.price}</td>
                                     <td></td>
                                     <td></td>
-                                    <td><button onClick={() => navigate(`/payment/${o._id}`)} className='btn hover:bg-blue-300'>Pay</button></td>
+                                    <td>
+                                        {
+                                            (o?.price && !o?.paid) && <button onClick={() => navigate(`/payment/${o._id}`)} className='btn hover:bg-blue-300'>Pay</button>
+                                        }
+                                        {
+                                            (o?.price && o?.paid) && <div>
+                                                <p><span className='text-success'>Paid</span> </p>
+                                                <p>Transaction id: <span className='text-success'>{o?.tid}</span></p>
+                                            </div>
+                                        }
+                                    </td>
 
                                     <label onClick={() => setId(`${o?._id}`)} for="delete-modal" class=" cursor-pointer text-red-500 text-xl"><i class="fa-solid fa-delete-left mt-6 ml-5"></i></label>
                                 </tr>
