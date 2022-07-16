@@ -17,8 +17,9 @@ const Home = () => {
             
             <HomeTools/>
             <Summary/>
-            <ReviewCard/>
+           
             <Contuct/>
+            <ReviewCard/>
             <Footer/>
          
         </div>

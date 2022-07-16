@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link ,useNavigate} from 'react-router-dom'
 import auth from '../firebase.init';
-import {useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
+import {useCreateUserWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
 import Loading from '../Components/Loading';
 import useToken from '../hooks/useToken';
@@ -9,6 +9,7 @@ import useToken from '../hooks/useToken';
 
 const Signup = () => {
     const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
+    const [signInWithFacebook, fuser, floading, ferror] = useSignInWithFacebook(auth);
     const [
         createUserWithEmailAndPassword,
         user,
@@ -16,7 +17,7 @@ const Signup = () => {
         error,
       ] = useCreateUserWithEmailAndPassword(auth);
     const [updateProfile, updating, uerror] = useUpdateProfile(auth);
-      const [token]=useToken(user||guser)
+      const [token]=useToken(user||guser||fuser)
     const navigate=useNavigate()
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit =async data => {
@@ -25,7 +26,7 @@ const Signup = () => {
         await updateProfile({displayName:data.name})
       
     };
-    if (gloading || loading||updating) {
+    if (gloading || loading||updating||floading) {
         return <Loading></Loading>
     }
     if (token) {
@@ -34,7 +35,7 @@ const Signup = () => {
     }
     let signInError;
     if (gerror || error||uerror) {
-        signInError = <p className='text-red-500'><small>{error?.message || gerror?.message||uerror?.message}</small></p>
+        signInError = <p className='text-red-500'><small>{error?.message || gerror?.message||uerror?.message||ferror?.message}</small></p>
     }
 
     return (
@@ -124,8 +125,8 @@ const Signup = () => {
                         <button
                             onClick={() => signInWithGoogle()}
                             className='btn btn-glass hover:btn-accent'>Continue with Google</button>
-                        <button className='btn btn-glass hover:btn-accent'>Continue with Github</button>
-                        <button className='btn btn-glass hover:btn-accent'>Continue with Facebook</button>
+                        {/* <button className='btn btn-glass hover:btn-accent'>Continue with Github</button> */}
+                        {/* <button onClick={() => signInWithFacebook()} className='btn btn-glass hover:btn-accent'>Continue with Facebook</button>  */}
                     </div>
                 </div>
             </div>

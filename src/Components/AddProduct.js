@@ -28,7 +28,7 @@ const AddProduct = ({ setAdd, refetch }) => {
                         price: data.price,
 
                     }
-                    fetch(`https://desolate-bayou-39842.herokuapp.com/addproduct`, {
+                    fetch(`https://git.heroku.com/morning-atoll-82384.git /addproduct`, {
                         method: 'post',
                         headers: {
                             'content-type': 'application/json'
@@ -41,8 +41,9 @@ const AddProduct = ({ setAdd, refetch }) => {
                             toast('Product Added')
 
                         })
-                    refetch()
+
                     setAdd(null)
+                    refetch()
                 }
             })
 

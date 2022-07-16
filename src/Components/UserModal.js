@@ -1,32 +1,31 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 
-const ProductModal = ({ id, refetch, setId }) => {
+const UserModal = ({ duser, refetch, setDuser }) => {
 
     const handleproduct = id => {
-        fetch(`https://git.heroku.com/morning-atoll-82384.git /product/${id}`, {
+        fetch(`https://git.heroku.com/morning-atoll-82384.git /duser/${id}`, {
             method: 'Delete',
         }).then(res => res.json())
             .then(data => {
 
-                toast.success('Product Deleted')
+                toast.success('User Deleted')
 
-                setId(null)
+                setDuser(null)
                 refetch()
-
             })
     }
     return (
         <div>
-            <input type="checkbox" id="product-modal" class="modal-toggle" />
+            <input type="checkbox" id="user-modal" class="modal-toggle" />
             <div class="modal modal-bottom sm:modal-middle">
                 <div class="modal-box">
 
                     <h3 class="font-bold text-lg">Do you want to Delete This Product?</h3>
 
                     <div class="modal-action">
-                        <label onClick={() => handleproduct(id)} for="product-modal" class="btn">Yes</label>
-                        <label for="product-modal" class="btn ">No</label>
+                        <label onClick={() => handleproduct(duser)} for="user-modal" class="btn">Yes</label>
+                        <label for="user-modal" class="btn ">No</label>
                     </div>
                 </div>
             </div>
@@ -34,4 +33,4 @@ const ProductModal = ({ id, refetch, setId }) => {
     );
 };
 
-export default ProductModal;
+export default UserModal;

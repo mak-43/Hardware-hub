@@ -9,10 +9,10 @@ import ShippedModal from '../../Components/ShippedModal';
 
 const ManageOrder = () => {
     const [id, setId] = useState(null)
-    const [shipped,setShipped]=useState(null)
+    const [shipped, setShipped] = useState(null)
 
     const navigate = useNavigate()
-    const { isLoading, error, data: orders, refetch } = useQuery('orderss', () => fetch(`https://desolate-bayou-39842.herokuapp.com/orders`, {
+    const { isLoading, error, data: orders, refetch } = useQuery('orderss', () => fetch(`https://git.heroku.com/morning-atoll-82384.git /orders`, {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -75,21 +75,21 @@ const ManageOrder = () => {
                                     </td>
                                     <td>
                                         {
-                                            (o?.price && !o?.paid) && <p  className='   text-red-600  '>unpaid </p>
+                                            (o?.price && !o?.paid) && <p className='   text-red-600  '>unpaid </p>
                                         }
                                         {
                                             (!o.shipped && o?.price && o?.paid) && <div className='flex flex-col gap-2'>
-                                                
-                                                    <p className=' '>Pending</p>
-                                                 
 
-                                                    <label onClick={()=>setShipped(`${o?._id}`)}
-                                                     for="shipped" class="btn modal-button text-blue-600">Shipped</label>
+                                                <p className=' '>Pending</p>
+
+
+                                                <label onClick={() => setShipped(`${o?._id}`)}
+                                                    for="shipped" class="btn modal-button text-blue-600">Shipped ?</label>
 
                                             </div>
                                         }
                                         {
-                                            o?.shipped && <p className='text-violet-600 font-bold '>SHIPPED</p>
+                                            o?.shipped && <p className='text-green-600 font-bold '>SHIPPED</p>
                                         }
                                     </td>
                                     <td>

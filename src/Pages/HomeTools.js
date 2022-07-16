@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 const HomeTools = () => {
     const navigate = useNavigate()
-    const { isLoading, error, data: tools, refetch } = useQuery('update', () => fetch('https://desolate-bayou-39842.herokuapp.com/updatetools').then(res => res.json()))
+    const { isLoading, error, data: tools, refetch } = useQuery('update', () => fetch('https://git.heroku.com/morning-atoll-82384.git /updatetools').then(res => res.json()))
     if (isLoading) {
         return <Loading />
     }

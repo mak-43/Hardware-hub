@@ -9,7 +9,7 @@ const Tools = () => {
 
     // const [tools,setTools]=useState([])
 
-    const { isLoading, error, data: tools, refetch } = useQuery('tool', () => fetch('https://desolate-bayou-39842.herokuapp.com/tools').then(res => res.json()))
+    const { isLoading, error, data: tools, refetch } = useQuery('tool', () => fetch('https://git.heroku.com/morning-atoll-82384.git /tools').then(res => res.json()))
     if (isLoading) {
         return <Loading />
     }
@@ -27,7 +27,7 @@ const Tools = () => {
                 }
 
             </div>
-            <Footer/>
+            <Footer />
         </div>
     );
 };

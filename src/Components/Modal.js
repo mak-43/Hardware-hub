@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 const Modal = ({ id, refetch, setId }) => {
 
     const handleDelete = id => {
-        fetch(`https://desolate-bayou-39842.herokuapp.com/order/${id}`, {
+        fetch(`https://git.heroku.com/morning-atoll-82384.git /order/${id}`, {
             method: 'DELETE',
         }).then(res => res.json())
             .then(data => {

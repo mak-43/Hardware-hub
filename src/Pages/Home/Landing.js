@@ -1,9 +1,12 @@
 
+import Carousel from 'nuka-carousel';
 import React, { useState } from 'react';
+
 
 import b1 from '../../Assets/Images/b1.jpg'
 import b2 from '../../Assets/Images/b2.jpg'
 import b3 from '../../Assets/Images/b3.jpg'
+import b4 from '../../Assets/Images/b4.jpg'
 
 
 const Landing = () => {
@@ -12,7 +15,7 @@ const Landing = () => {
     return (
         <div className=''>
 
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            {/* <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -20,13 +23,13 @@ const Landing = () => {
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="d-block w-100" src="..." alt="First slide"/>
+                        <img class="d-block w-100" src={b1} alt="First slide"/>
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="..." alt="Second slide"/>
+                        <img class="d-block w-100" src={b2} alt="Second slide"/>
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="..." alt="Third slide"/>
+                        <img class="d-block w-100" src={b4} alt="Third slide"/>
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -37,29 +40,37 @@ const Landing = () => {
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
-            </div>
+            </div> */}
 
-            {/* <Carousel
-                showThumbs={false}
-                // autoPlay={true}
-               infiniteLoop={true}
+            <Carousel
              
-             
-
+              
+             infiniteLoop={true}
+             autoplay={true}
+             autoplayReverse={true}
+             autoplayInterva={3000}
+             adaptiveHeight={true}
+             style={{height:'400px'}}
+        
+      
             >
-                <div    >
-                    <img    src={b1} />
-                    <p className="legend">All Hardware are availabe</p>
-                </div>
-                <div>
-                    <img src={b2} />
-                    <p className="legend">We ensure the quality</p>
+                <div      >
+                    <img className='object-contain'   src={b4} />
+                    <p className="legend text-center">All types of Hardware are availabe</p>
                 </div>
                 <div>
                     <img src={b3} />
-                    <p className="legend">Latest prettiest </p>
+                    <p className="legend text-center">We ensure the quality</p>
                 </div>
-            </Carousel> */}
+                <div>
+                    <img src={b1} />
+                    <p className="legend text-center">Latest prettiest </p>
+                </div>
+                <div>
+                    <img src={b2} />
+                    <p className="legend text-center">Latest prettiest </p>
+                </div>
+            </Carousel>
 
 
             {/* <div class="carousel w-full ">

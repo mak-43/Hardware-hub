@@ -25,9 +25,9 @@ const Contuct = () => {
         toast('Email send')
     }
     return (
-        <div for='contact' className='text-center my-10 lg:px-20  '>
-        <p className=''>Feel Free to Contact </p>
-        <p className='my-5 text-3xl mb-10'>Get In Touch </p>
+        <div for='contact' className='text-center mt-20 mb-20 lg:px-20  '>
+        <p className='text-xl'>Feel Free to Contact </p>
+        <p className='my-5 text-3xl mb-10 font-bold'>Get In Touch </p>
         <div className='grid md:grid-cols-2 sm:grid-cols-1'>
             <div className='  p-2 shadow-xl rounded-xl'>
                 <p className='text-xl'>Contact Form</p>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link, NavLink, useNavigate ,useLocation} from 'react-router-dom'
+import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom'
 import auth from '../firebase.init';
 import { signOut } from 'firebase/auth'
 
@@ -13,8 +13,10 @@ const Navbar = ({ children }) => {
         navigate('/login')
 
     }
-   
+
     const [dark, setDark] = useState(false)
+    const { pathname } = useLocation()
+    console.log(pathname)
     const menu = <>
         <li><NavLink to='/' className='rounded-lg'>Home</NavLink></li>
         <li><NavLink to='/tools' className='rounded-lg '>Tools</NavLink></li>
@@ -43,10 +45,10 @@ const Navbar = ({ children }) => {
             <div class="drawer-content flex flex-col">
                 {/* <!-- Navbar --> */}
                 <div class="w-full navbar bg-base-300 lg:px-10">
-                  
-                  <label  for="my-drawer-2" tabindex="0" class="btn btn-ghost btn-circle lg:hidden ">
+
+                  { pathname.includes('/dashboard') && <label for="my-drawer-2" tabindex="0" class="btn btn-ghost btn-circle lg:hidden ">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
-                    </label>
+                    </label>}
 
                     <div class="flex-1 px-2 mx-2 text-2xl cursor-pointer font-bold logo "><Link to='/' className='rounded-lg'>Hardware Hub</Link></div>
                     <div class="flex-none lg:hidden">

@@ -1,31 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query'
 import ReactStars from 'react-rating-stars-component';
-import { Zoom,Fade,Rotate,Flip,Bounce,Roll } from 'react-reveal';
+import { Zoom, Fade, Rotate, Flip, Bounce, Roll } from 'react-reveal';
 import Loading from '../../Components/Loading';
 import './ReviewCard.css'
 
 const ReviewCard = () => {
 
-    const [pageCount,setPageCount]=useState(0)
-    const [page,setPage]=useState(0)
-    const [size,setSize]=useState(6)
-    useEffect(()=>{
-        fetch('http://localhost:5000/count')
-        .then(res=>res.json())
-        .then(data=>{
-            const count=data.count
-            const pages=Math.ceil(count/size)
-            setPageCount(pages)
-        })
-    },[page,size])
+    const [pageCount, setPageCount] = useState(0)
+    const [page, setPage] = useState(0)
+    const [size, setSize] = useState(6)
+    useEffect(() => {
+        fetch('https://git.heroku.com/morning-atoll-82384.git /count')
+            .then(res => res.json())
+            .then(data => {
+                const count = data.count
+                const pages = Math.ceil(count / size)
+                setPageCount(pages)
+            })
+    }, [page, size])
 
-    const { isLoading, error, data: reviews, refetch } = useQuery(['review',page,size], () => fetch(`http://localhost:5000/getreview?page=${page}&size=${size}`).then(res => res.json()))
+    const { isLoading, error, data: reviews, refetch } = useQuery(['review', page, size], () => fetch(`https://git.heroku.com/morning-atoll-82384.git /getreview?page=${page}&size=${size}`).then(res => res.json()))
     if (isLoading) {
         return <Loading />
     }
 
-    console.log('size',size ,'page',page)
+    console.log('size', size, 'page', page)
     return (
         <div className='my-10'>
             <h1 className=' text-center my-5 text-3xl '>Client Reviews </h1>
@@ -49,9 +49,9 @@ const ReviewCard = () => {
                             <h2 class="card-title "><Fade left>{r.name}</Fade></h2>
                             <p>Review: <small>{r.review}</small></p>
                             <Fade bottom><p className='flex gap-2 justify-center items-center'>Ratings: {r.rate}<Bounce><ReactStars value={r.rate} activeColor="#1bbb70" /></Bounce>  </p></Fade>
-                           
-                                
-                            
+
+
+
 
 
 
@@ -62,14 +62,14 @@ const ReviewCard = () => {
             </div>
             <div className='text-center my-10 pagination'>
                 {
-                 [...Array(pageCount).keys()].map(n=> <button 
-                    
-                    className= {page===n?  'btn btn-xs mx-2 selected': 'btn btn-xs mx-2 '}
-                 onClick={()=>setPage(n)}
-                 >{n}</button>)
+                    [...Array(pageCount).keys()].map(n => <button
+
+                        className={page === n ? 'btn btn-xs mx-2 selected' : 'btn btn-xs mx-2 '}
+                        onClick={() => setPage(n)}
+                    >{n}</button>)
 
                 }
-                <select  onChange={e=>setSize(e.target.value)}>
+                <select onChange={e => setSize(e.target.value)}>
                     <option value="1" >1</option>
                     <option value="2" >2</option>
                     <option value="4">4</option>

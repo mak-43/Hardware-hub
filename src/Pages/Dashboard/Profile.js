@@ -10,16 +10,16 @@ const Profile = () => {
     const [user, loading] = useAuthState(auth);
     const [modal, setModal] = useState(null)
 
-    const { email } = user?.email
+    // const { email } = user?.email
 
-    const { isLoading, error, data: pro, refetch } = useQuery('modal', () => fetch(`https://desolate-bayou-39842.herokuapp.com/userpro?email=${user?.email}`).then(res => res.json()))
+    const { isLoading, error, data: pro, refetch } = useQuery('modal', () => fetch(`https://git.heroku.com/morning-atoll-82384.git /userpro?email=${user?.email}`).then(res => res.json()))
     if (isLoading) {
         return <Loading />
     }
 
 
     //   const {education,location,phone,linkdin}=pro[0]
-   
+
     return (
         <div className='h-fit'>
             <div>
@@ -49,7 +49,7 @@ const Profile = () => {
                     modal && <ProfileModal refetch={refetch} user={user} setModal={setModal}></ProfileModal>
                 }
             </div>
-            
+
         </div>
     );
 };

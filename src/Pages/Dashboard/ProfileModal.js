@@ -15,11 +15,11 @@ const ProfileModal = ({ user, setModal, refetch }) => {
         }
         console.log(info)
 
-        //    await axios.post('https://desolate-bayou-39842.herokuapp.com/updatepro',info).then(res=>{
+        //    await axios.post('https://git.heroku.com/morning-atoll-82384.git /updatepro',info).then(res=>{
         //     console.log(res)
         //     toast.success(`Profile updated`);
         //    })
-        const url = `https://desolate-bayou-39842.herokuapp.com/updatepro`
+        const url = `https://git.heroku.com/morning-atoll-82384.git /updatepro`
         fetch(url, {
             method: 'put',//thakle update korbe na thakle add koreb put
             headers: {
@@ -33,8 +33,9 @@ const ProfileModal = ({ user, setModal, refetch }) => {
                 toast('Profile updated')
 
             })
-        refetch()
+
         setModal(null)
+        refetch()
 
     }
 

@@ -5,11 +5,13 @@ import Loading from '../../Components/Loading';
 import auth from '../../firebase.init';
 import axios from 'axios'
 import { toast } from 'react-toastify';
+import { useState } from 'react';
+import UserModal from '../../Components/UserModal';
 
 const AddAdmin = () => {
     const [user, loading] = useAuthState(auth);
-
-    const { data: users, isLoading, refetch } = useQuery('users', () => fetch(`https://desolate-bayou-39842.herokuapp.com/user`, {
+    const [duser, setDuser] = useState(null)
+    const { data: users, isLoading, refetch } = useQuery('users', () => fetch(`https://git.heroku.com/morning-atoll-82384.git /user`, {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -20,7 +22,7 @@ const AddAdmin = () => {
     }
 
     const makeAdmin = (name, email) => {
-        fetch(`https://desolate-bayou-39842.herokuapp.com/user/admin/${email}`, {
+        fetch(`https://git.heroku.com/morning-atoll-82384.git /user/admin/${email}`, {
             method: 'PUT',
             headers: {
                 authorization: `Bearere ${localStorage.getItem('accessToken')}`
@@ -72,12 +74,20 @@ const AddAdmin = () => {
                                     <td>{o?.name}</td>
                                     <td>{o?.email}</td>
 
-                                    <td>{
-                                        o?.role !== 'admin' ? <button onClick={() => makeAdmin(o?.name, o?.email)} className='btn btn-small '>Make Admin</button> :
-                                            <p ><small className='text-centerfont-semibold text-blue-700'>Admin</small></p>
-                                    }</td>
+                                    <td>
+                                        {
+                                            o?.master && <p className='text-green-600 font-bold'>Root </p>
+                                        }
+                                        {
+                                            o?.role !== 'admin' ? <button onClick={() => makeAdmin(o?.name, o?.email)} className='btn btn-small '>Make Admin</button> :
+                                                <p ><small className='text-centerfont-semibold text-blue-700'>Admin</small></p>
+                                        }
 
-                                    <td><button className='text-red-500 text-xl '><i class="fa-solid fa-delete-left  "></i></button></td>
+                                    </td>
+
+                                    <td>{
+                                        !o?.master && <label onClick={() => setDuser(`${o?._id}`)} for="user-modal" class=" cursor-pointer text-red-500 text-xl"><i class="fa-solid fa-delete-left mt-6 ml-5"></i></label>
+                                    }</td>
                                 </tr>
                             )
                         }
@@ -85,9 +95,12 @@ const AddAdmin = () => {
                     </tbody>
                 </table>
             </div>
+            {
+                duser && <UserModal duser={duser} refetch={refetch} setDuser={setDuser}></UserModal>
+            }
         </div>
     );
-    refetch()
+
 };
 
 export default AddAdmin;

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link ,useNavigate,useLocation} from 'react-router-dom'
 import auth from '../firebase.init';
-import { useAuthState, useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useAuthState, useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
 import Loading from '../Components/Loading';
 import { toast } from 'react-toastify';
@@ -9,6 +9,7 @@ import useToken from '../hooks/useToken';
 
 const Login = () => {
     const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
+    const [signInWithFacebook, fuser, floading, ferror] = useSignInWithFacebook(auth);
     const [nuser, nloading, nerror] = useAuthState(auth);
     const [
         signInWithEmailAndPassword,
@@ -28,7 +29,7 @@ const Login = () => {
        
     };
     
-    const [token]=useToken(user||guser||nuser)
+    const [token]=useToken(user||guser||nuser||fuser)
     const navigate= useNavigate()
     const location = useLocation()
     let signInError;
@@ -40,7 +41,7 @@ const Login = () => {
             navigate(from,{replace:true})
         }
     },[token,from,navigate])
-    if(gloading||loading||nloading){
+    if(gloading||loading||nloading||floading){
         return <Loading></Loading>
     }
 
@@ -139,8 +140,8 @@ const Login = () => {
                         <button
                             onClick={() => signInWithGoogle()}
                             className='btn btn-glass hover:btn-accent'>Continue with Google</button>
-                        <button className='btn btn-glass hover:btn-accent'>Continue with Github</button>
-                        <button className='btn btn-glass hover:btn-accent'>Continue with Facebook</button>
+                        {/* <button className='btn btn-glass hover:btn-accent'>Continue with Github</button> */}
+                        {/* <button onClick={() => signInWithFacebook()} className='btn btn-glass hover:btn-accent'>Continue with Facebook</button> */}
                     </div>
                 </div>
             </div>

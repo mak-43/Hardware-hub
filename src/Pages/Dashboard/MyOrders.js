@@ -12,7 +12,9 @@ const MyOrders = () => {
     const [user, loading] = useAuthState(auth);
     const [id, setId] = useState(null)
     const navigate = useNavigate()
-    const { isLoading, error, data: orders, refetch } = useQuery('order', () => fetch(`http://localhost:5000/order?email=${user?.email}`, {
+    const email = user?.email
+
+    const { isLoading, error, data: orders, refetch } = useQuery('order', () => fetch(`https://git.heroku.com/morning-atoll-82384.git /order?email=${email}`, {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -29,14 +31,14 @@ const MyOrders = () => {
 
     }))
 
-    if (isLoading) {
+    if (isLoading || loading) {
         return <Loading />
     }
 
 
 
     return (
-        <div className='h-fit mt-10 w-full'>
+        <div className='h-fit  w-full'>
             <div class="overflow-x-auto">
                 <table class="table w-full">
 
@@ -48,6 +50,7 @@ const MyOrders = () => {
                             <th>Quantity</th>
                             <th>Price</th>
                             <th>Payment</th>
+                            <th>status</th>
                             <th>Cancel</th>
                         </tr>
                     </thead>
@@ -67,18 +70,27 @@ const MyOrders = () => {
                                     <td>{o?.quantity} pices</td>
                                     <td>$ {o?.price}</td>
                                     <td> {
-                                            (o?.price && !o?.paid) && <button onClick={() => navigate(`/payment/${o._id}`)} className='btn hover:bg-blue-300'>Pay</button>
-                                        }
+                                        (o?.price && !o?.paid) && <button onClick={() => navigate(`/payment/${o._id}`)} className='btn hover:bg-blue-300'>Pay</button>
+                                    }
                                         {
                                             (o?.price && o?.paid) && <div>
                                                 <p><span className='text-success'>Paid</span> </p>
                                                 <p>Transaction id: <span className='text-success'>{o?.tid}</span></p>
                                             </div>
                                         }</td>
+                                    <td>
+                                        {
+                                            (o?.paid && o?.shipped) && <p className='font-bold text-pink-800'>Shipped</p>
+                                        }
+                                        {
+                                            (!o?.shipped && o?.paid) && <p className='text-violet-800 '>Pending</p>
+                                        }
 
-                                   {
-                                    !o?.paid &&  <label onClick={() => setId(`${o?._id}`)} for="delete-modal" class=" cursor-pointer text-red-500 text-xl"><i class="fa-solid fa-delete-left mt-6 ml-5"></i></label>
-                                   }
+                                    </td>
+
+                                    <td>    {
+                                        !o?.paid && <label onClick={() => setId(`${o?._id}`)} for="delete-modal" class=" cursor-pointer text-red-500 text-xl"><i class="fa-solid fa-delete-left mt-6 ml-5"></i></label>
+                                    }</td>
 
 
                                 </tr>
