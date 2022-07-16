@@ -24,7 +24,7 @@ const ReviewCard = () => {
     if (isLoading) {
         return <Loading />
     }
-    refetch()
+
     console.log('size',size ,'page',page)
     return (
         <div className='my-10'>

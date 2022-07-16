@@ -38,7 +38,7 @@ const Navbar = ({ children }) => {
 
     </>
     return (
-        <div data-theme={dark ? 'dark' : 'light'} class="drawer drawer-end  mb-10">
+        <div data-theme={dark ? 'dark' : 'light'} class="drawer drawer-end  mb-10 h-full">
             <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
             <div class="drawer-content flex flex-col">
                 {/* <!-- Navbar --> */}
@@ -55,7 +55,7 @@ const Navbar = ({ children }) => {
                         </label>
                     </div>
                     <div class="flex-none hidden lg:block">
-                        <ul class="menu menu-horizontal">
+                        <ul class="menu menu-horizontal ">
                             {/* <!-- Navbar menu content here --> */}
 
                             {menu}
@@ -67,7 +67,7 @@ const Navbar = ({ children }) => {
             </div>
             <div class="drawer-side">
                 <label for="my-drawer-3" class="drawer-overlay"></label>
-                <ul class="menu p-4 overflow-y-auto w-80 bg-base-100">
+                <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 ">
                     {/* <!-- Sidebar content here --> */}
                     {menu}
                 </ul>
