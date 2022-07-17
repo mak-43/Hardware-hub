@@ -10,16 +10,29 @@ import auth from '../../firebase.init';
 const Review = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm()
     const [user] = useAuthState(auth)
-
+    const [p,setP]=useState({})
+    const email=user?.email
+    useEffect(()=>{
+        fetch(`https://morning-atoll-82384.herokuapp.com/pro?email=${email}`).then(res=>res.json()).then(data=>setP(data))
+    },[user])
+   
     const onSubmit = data => {
-        console.log(data)
-        const url = `https://git.heroku.com/morning-atoll-82384.git /postreview`
+        
+        const rev={
+            photo:p[0]?.photo,
+            email:email,
+            name:data.name,
+            review:data.review,
+            rate:data.rate
+        }
+        console.log(rev)
+        const url = `https://morning-atoll-82384.herokuapp.com/postreview`
         fetch(url, {
             method: 'post',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(rev)
         }).then(res => res.json())
             .then(result => {
 
@@ -32,7 +45,7 @@ const Review = () => {
             <h1 className='text-bold text-2xl my-5'>Add your review</h1>
             <div class="avatar my-5">
                 <div class="w-24  rounded-full flex justify-center items-center mx-auto ">
-                    <img src={user?.photoURL} />
+                    <img src={p[0]?.photo? p[0]?.photo:user?.photoURL} />
                 </div>
             </div>
             <form
@@ -41,7 +54,7 @@ const Review = () => {
             >
 
 
-                <input type="text" value={user?.photoURL} hidden placeholder="Type here" class="input input-bordered input-accent w-full " {...register("photo")}
+                <input type="text" value={p[0]?.photo} hidden placeholder="Type here" class="input input-bordered input-accent w-full " {...register("photo")}
                 />
                 <input type="text" value={user?.email} placeholder="Type here" class="input input-bordered input-accent w-full " {...register("email")}
                 />

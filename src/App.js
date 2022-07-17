@@ -15,6 +15,7 @@ import ManageProduct from "./Pages/Dashboard/ManageProduct";
 import Review from "./Pages/Dashboard/Review";
 import MyOrders from "./Pages/Dashboard/MyOrders";
 import RequireAdmin from "./Authentication/RequireAdmin";
+import NotFound from './Components/NotFound'
 
 function App() {
 
@@ -52,7 +53,7 @@ function App() {
                
             </Route>
          </Route>
-
+         <Route path='*' element={<NotFound />}></Route>
         </Routes>
       </Navbar>
      

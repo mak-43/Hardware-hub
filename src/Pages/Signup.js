@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link ,useNavigate} from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import auth from '../firebase.init';
-import {useCreateUserWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
 import Loading from '../Components/Loading';
 import useToken from '../hooks/useToken';
@@ -15,27 +15,27 @@ const Signup = () => {
         user,
         loading,
         error,
-      ] = useCreateUserWithEmailAndPassword(auth);
+    ] = useCreateUserWithEmailAndPassword(auth);
     const [updateProfile, updating, uerror] = useUpdateProfile(auth);
-      const [token]=useToken(user||guser||fuser)
-    const navigate=useNavigate()
+    const [token] = useToken(user || guser || fuser)
+    const navigate = useNavigate()
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit =async data => {
+    const onSubmit = async data => {
         console.log(data)
         await createUserWithEmailAndPassword(data.email, data.password)
-        await updateProfile({displayName:data.name})
-      
+        await updateProfile({ displayName: data.name })
+
     };
-    if (gloading || loading||updating||floading) {
+    if (gloading || loading || updating || floading) {
         return <Loading></Loading>
     }
     if (token) {
         navigate('/')
-       
+
     }
     let signInError;
-    if (gerror || error||uerror) {
-        signInError = <p className='text-red-500'><small>{error?.message || gerror?.message||uerror?.message||ferror?.message}</small></p>
+    if (gerror || error || uerror) {
+        signInError = <p className='text-red-500'><small>{error?.message || gerror?.message || uerror?.message || ferror?.message}</small></p>
     }
 
     return (
@@ -60,12 +60,12 @@ const Signup = () => {
                                         value: true,
                                         message: 'Name is Required'
                                     }
-                                   
+
                                 })}
                             />
-                             <label className="label">
+                            <label className="label">
                                 {errors.email?.type === 'required' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
-                             
+
                             </label>
 
                             <label className="label">

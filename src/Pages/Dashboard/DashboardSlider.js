@@ -24,7 +24,7 @@ const DashboardSlider = ({ children }) => {
                     {
                         admin ? <>
                             <li><NavLink to='profile'>Profile</NavLink></li>
-                            <li><NavLink to='admin'>Make Admin</NavLink></li>
+                            <li><NavLink to='admin'>All Users </NavLink></li>
                             <li><NavLink to='manage'>Manage All Oders</NavLink></li>
                             <li><NavLink to='products'>Manage All Products</NavLink></li>
                         </> :

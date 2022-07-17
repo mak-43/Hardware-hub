@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 const UserModal = ({ duser, refetch, setDuser }) => {
 
     const handleproduct = id => {
-        fetch(`https://git.heroku.com/morning-atoll-82384.git /duser/${id}`, {
+        fetch(`https://morning-atoll-82384.herokuapp.com/duser/${id}`, {
             method: 'Delete',
         }).then(res => res.json())
             .then(data => {

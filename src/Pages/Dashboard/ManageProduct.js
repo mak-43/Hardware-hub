@@ -10,7 +10,7 @@ const ManageProduct = () => {
     const [add, setAdd] = useState(null)
     const navigate = useNavigate()
 
-    const { isLoading, error, data: products, refetch } = useQuery('products', () => fetch(`https://git.heroku.com/morning-atoll-82384.git /tools`).then(res => {
+    const { isLoading, error, data: products, refetch } = useQuery('products', () => fetch(`https://morning-atoll-82384.herokuapp.com/tools`).then(res => {
 
         return res.json()
 

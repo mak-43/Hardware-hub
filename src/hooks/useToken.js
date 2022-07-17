@@ -13,7 +13,7 @@ const useToken = (user) => {
         }
         console.log(currentUser)
         if (email) {
-            fetch(`https://git.heroku.com/morning-atoll-82384.git /user/${email}`, {
+            fetch(`https://morning-atoll-82384.herokuapp.com/user/${email}`, {
                 method: 'put',
                 headers: {
                     'content-type': 'application/json'

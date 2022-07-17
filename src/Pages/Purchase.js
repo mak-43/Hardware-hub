@@ -26,7 +26,7 @@ const Purchase = () => {
             phone: e.target.phone.value
         }
 
-        await axios.post("https://git.heroku.com/morning-atoll-82384.git /order", inputData).then((res) => {
+        await axios.post("https://morning-atoll-82384.herokuapp.com/order", inputData).then((res) => {
             console.log(res)
             toast.success(`Order placed`);
         });
@@ -43,7 +43,7 @@ const Purchase = () => {
         setP()
     };
 
-    const { isLoading, error, data: product } = useQuery('tools', () => fetch(`https://git.heroku.com/morning-atoll-82384.git /tools/${id}`).then(res => res.json()))
+    const { isLoading, error, data: product } = useQuery('tools', () => fetch(`https://morning-atoll-82384.herokuapp.com/tools/${id}`).then(res => res.json()))
     if (isLoading) {
         return <Loading />
     }

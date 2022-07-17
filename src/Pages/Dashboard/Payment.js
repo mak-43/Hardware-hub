@@ -11,7 +11,7 @@ const stripePromise = loadStripe('pk_test_51L1x9rINdMRuzrmmOATQIGakerryL5DEiZf2R
 
 const Payment = () => {
     const { id } = useParams()
-    const { isLoading, error, data: order, refetch } = useQuery(['payment', id], () => fetch(`https://git.heroku.com/morning-atoll-82384.git /payment/${id}`, {
+    const { isLoading, error, data: order, refetch } = useQuery(['payment', id], () => fetch(`https://morning-atoll-82384.herokuapp.com/payment/${id}`, {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`

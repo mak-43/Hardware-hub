@@ -12,7 +12,7 @@ const ManageOrder = () => {
     const [shipped, setShipped] = useState(null)
 
     const navigate = useNavigate()
-    const { isLoading, error, data: orders, refetch } = useQuery('orderss', () => fetch(`https://git.heroku.com/morning-atoll-82384.git /orders`, {
+    const { isLoading, error, data: orders, refetch } = useQuery('orderss', () => fetch(`https://morning-atoll-82384.herokuapp.com/orders`, {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`

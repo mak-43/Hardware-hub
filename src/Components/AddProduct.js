@@ -28,7 +28,7 @@ const AddProduct = ({ setAdd, refetch }) => {
                         price: data.price,
 
                     }
-                    fetch(`https://git.heroku.com/morning-atoll-82384.git /addproduct`, {
+                    fetch(`https://morning-atoll-82384.herokuapp.com/addproduct`, {
                         method: 'post',
                         headers: {
                             'content-type': 'application/json'

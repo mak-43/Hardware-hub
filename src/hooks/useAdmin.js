@@ -5,7 +5,7 @@ const useAdmin = (user) => {
     const [adminLoading, setLoading] = useState(true)
     // const email = user?.email
     useEffect(() => {
-        fetch(`https://git.heroku.com/morning-atoll-82384.git /admin/${user?.email}`, {
+        fetch(`https://morning-atoll-82384.herokuapp.com/admin/${user?.email}`, {
             method: 'GET',
             headers: {
 

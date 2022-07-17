@@ -62,7 +62,7 @@ const Login = () => {
             
         }
         else {
-            toast('Please enter your email')
+            toast.error('Please enter your email')
           
         }
     }
@@ -133,9 +133,9 @@ const Login = () => {
                             <input className='btn btn-primary w-full max-w-xs  text-white' type="submit" value="Login" />
                         </form>
                         <p>New to this site ? <Link to='/signup' className='text-cyan-400'><small>Sign Up</small></Link>  </p>
-                        <p>Forget Password ? <Link to='' 
+                        {/* <p>Forget Password ? <Link to='' 
                          onClick= {resetPassword}
-                        className='text-cyan-400'><small>Reset Password</small></Link> </p>
+                        className='text-cyan-400'><small>Reset Password</small></Link> </p> */}
                         <div class="divider">OR</div>
                         <button
                             onClick={() => signInWithGoogle()}

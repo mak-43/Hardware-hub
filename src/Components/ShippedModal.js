@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 const ShippedModal = ({ shipped, setShipped, refetch }) => {
 
     const handleshipped = id => {
-        fetch(`https://git.heroku.com/morning-atoll-82384.git /shipped/${id}`, {
+        fetch(`https://morning-atoll-82384.herokuapp.com/shipped/${id}`, {
             method: 'Put',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`

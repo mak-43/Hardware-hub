@@ -14,7 +14,7 @@ const MyOrders = () => {
     const navigate = useNavigate()
     const email = user?.email
 
-    const { isLoading, error, data: orders, refetch } = useQuery('order', () => fetch(`https://git.heroku.com/morning-atoll-82384.git /order?email=${email}`, {
+    const { isLoading, error, data: orders, refetch } = useQuery('order', () => fetch(`https://morning-atoll-82384.herokuapp.com/order?email=${email}`, {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -38,7 +38,7 @@ const MyOrders = () => {
 
 
     return (
-        <div className='h-fit  w-full'>
+        <div className='h-screen mt-10 w-full'>
             <div class="overflow-x-auto">
                 <table class="table w-full">
 

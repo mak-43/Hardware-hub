@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query'
 import ReactStars from 'react-rating-stars-component';
 import { Zoom, Fade, Rotate, Flip, Bounce, Roll } from 'react-reveal';
 import Loading from '../../Components/Loading';
+import auth from '../../firebase.init';
 import './ReviewCard.css'
 
 const ReviewCard = () => {
-
+    const [user] = useAuthState(auth)
     const [pageCount, setPageCount] = useState(0)
     const [page, setPage] = useState(0)
     const [size, setSize] = useState(6)
     useEffect(() => {
-        fetch('https://git.heroku.com/morning-atoll-82384.git /count')
+        fetch('https://morning-atoll-82384.herokuapp.com/count')
             .then(res => res.json())
             .then(data => {
                 const count = data.count
@@ -20,7 +22,7 @@ const ReviewCard = () => {
             })
     }, [page, size])
 
-    const { isLoading, error, data: reviews, refetch } = useQuery(['review', page, size], () => fetch(`https://git.heroku.com/morning-atoll-82384.git /getreview?page=${page}&size=${size}`).then(res => res.json()))
+    const { isLoading, error, data: reviews, refetch } = useQuery(['review', page, size], () => fetch(`https://morning-atoll-82384.herokuapp.com/getreview?page=${page}&size=${size}`).then(res => res.json()))
     if (isLoading) {
         return <Loading />
     }
@@ -32,7 +34,7 @@ const ReviewCard = () => {
 
             <div className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-3'>
                 {
-                    reviews.map(r => <div class="card mx-auto w-96 bg-base-100 shadow-xl">
+                    reviews.map(r => <div class="card mx-auto  md:w-96 sm:w-full bg-base-100 shadow-xl">
 
                         <div class="card-body flex flex-col justify-center items-center">
 
@@ -40,7 +42,7 @@ const ReviewCard = () => {
 
                                 <div class="w-24 rounded-full">
                                     <Zoom>
-                                        <img src={r.photo} />
+                                        <img src={r.photo?r.photo :user.photoURL} />
                                     </Zoom>
                                 </div>
 

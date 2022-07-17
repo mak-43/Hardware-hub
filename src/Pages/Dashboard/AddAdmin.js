@@ -11,7 +11,7 @@ import UserModal from '../../Components/UserModal';
 const AddAdmin = () => {
     const [user, loading] = useAuthState(auth);
     const [duser, setDuser] = useState(null)
-    const { data: users, isLoading, refetch } = useQuery('users', () => fetch(`https://git.heroku.com/morning-atoll-82384.git /user`, {
+    const { data: users, isLoading, refetch } = useQuery('users', () => fetch(`https://morning-atoll-82384.herokuapp.com/user`, {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -22,7 +22,7 @@ const AddAdmin = () => {
     }
 
     const makeAdmin = (name, email) => {
-        fetch(`https://git.heroku.com/morning-atoll-82384.git /user/admin/${email}`, {
+        fetch(`https://morning-atoll-82384.herokuapp.com/user/admin/${email}`, {
             method: 'PUT',
             headers: {
                 authorization: `Bearere ${localStorage.getItem('accessToken')}`
@@ -68,7 +68,7 @@ const AddAdmin = () => {
                                     <th>{index + 1}</th>
                                     <td><div class="avatar">
                                         <div class="mask mask-squircle w-12 h-12">
-                                            <img src={o?.photo} alt="Avatar Tailwind CSS Component" />
+                                            <img src={o?.photo ? o?.photo:user?.photoURL} alt="Avatar Tailwind CSS Component" />
                                         </div>
                                     </div></td>
                                     <td>{o?.name}</td>

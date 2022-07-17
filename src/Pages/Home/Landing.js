@@ -42,7 +42,7 @@ const Landing = () => {
                 </a>
             </div> */}
 
-            <Carousel
+            {/* <Carousel
              
               
              infiniteLoop={true}
@@ -50,12 +50,13 @@ const Landing = () => {
              autoplayReverse={true}
              autoplayInterva={3000}
              adaptiveHeight={true}
-             style={{height:'400px'}}
+             style={{height:'584px'}}
+            
         
       
             >
                 <div      >
-                    <img className='object-contain'   src={b4} />
+                    <img  className='object-contain lg:h-1/2  md:h-full'   src={b4} />
                     <p className="legend text-center">All types of Hardware are availabe</p>
                 </div>
                 <div>
@@ -70,61 +71,71 @@ const Landing = () => {
                     <img src={b2} />
                     <p className="legend text-center">Latest prettiest </p>
                 </div>
-            </Carousel>
+            </Carousel> */}
 
 
-            {/* <div class="carousel w-full ">
-                <div id="item1" class="carousel-item w-full relative">
-                    <img src={b1} class="w-full  md:h-full " />
+            <div class="carousel w-full ">
+                <div  id="item1" class="carousel-item w-full relative">
+                    <img  src={b4} class="w-full  md:h-full " />
                     <div class="absolute  transform -translate-y-1/2 left-5 right-5 top-1/2">
                         <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                             <a href="#item4" class="btn btn-circle">❮</a>
                             <a href="#item2" class="btn btn-circle">❯</a>
                         </div>
-                        <h1 className=' flex justify-center  bottom-0  md:text-2xl lg:text-3xl font-bold text-emerald-900 '>All kinds of Hardware are availabe
+                        <h1 className='  flex justify-center  bottom-0  md:text-2xl lg:text-3xl font-bold text-white'>All kinds of Hardware are availabe
 
                         </h1>
                     </div>
 
                 </div>
-                <div id="item2" class="carousel-item w-full relative">
-                    <img src={b3} class="w-full lg:h-2/3 md:h-full" />
+                <div  id="item2" class="carousel-item w-full relative">
+                    <img  src={b2} class="w-full  md:h-full " />
                     <div class="absolute  transform -translate-y-1/2 left-5 right-5 top-1/2">
                         <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                             <a href="#item1" class="btn btn-circle">❮</a>
                             <a href="#item3" class="btn btn-circle">❯</a>
                         </div>
-                        <h1 className=' flex justify-center  bottom-0  md:text-2xl lg:text-3xl font-bold text-white'>All products are intake </h1>
+                        <h1 className=' flex justify-center  bottom-0  md:text-2xl lg:text-3xl font-bold text-orange-200 '>All kinds of Hardware are availabe
+
+                        </h1>
                     </div>
+
                 </div>
-                <div id="item3" class="carousel-item w-full relative">
-                    <img src={b2} class="w-full lg:h-2/3 md:h-full" />
+                <div  id="item3" class="carousel-item w-full relative">
+                    <img  src={b3} class="w-full  md:h-full " />
                     <div class="absolute  transform -translate-y-1/2 left-5 right-5 top-1/2">
                         <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                             <a href="#item2" class="btn btn-circle">❮</a>
                             <a href="#item4" class="btn btn-circle">❯</a>
                         </div>
-                        <h1 className=' flex justify-center  bottom-0  md:text-2xl lg:text-3xl font-bold text-yellow-600'>Latest Pretest products</h1>
+                        <h1 className=' flex justify-center  bottom-0  md:text-2xl lg:text-3xl font-bold text-white '>All kinds of Hardware are availabe
+
+                        </h1>
                     </div>
+
                 </div>
-                <div id="item4" class="carousel-item w-full relative">
-                    <img src={b2} class="w-full lg:h-2/3 md:h-full" />
+                <div  id="item4" class="carousel-item w-full relative">
+                    <img  src={b1} class="w-full  md:h-full " />
                     <div class="absolute  transform -translate-y-1/2 left-5 right-5 top-1/2">
                         <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                             <a href="#item3" class="btn btn-circle">❮</a>
                             <a href="#item1" class="btn btn-circle">❯</a>
                         </div>
-                        <h1 className=' flex justify-center  bottom-0  md:text-2xl lg:text-3xl font-bold text-rose-700'>Ashun Boshun eidike shob theke beshi luv</h1>
+                        <h1 className=' flex justify-center  bottom-0  md:text-2xl lg:text-3xl font-bold text-blue-400 '>All kinds of Hardware are availabe
+
+                        </h1>
                     </div>
+
                 </div>
+              
 
             </div>
-            <div class="flex justify-center  w-full py-2 gap-2">
+            <div class="flex justify-center  w-full  gap-2">
                 <a href="#item1" class="btn btn-xs">1</a>
                 <a href="#item2" class="btn btn-xs">2</a>
                 <a href="#item3" class="btn btn-xs">3</a>
                 <a href="#item4" class="btn btn-xs">4</a>
-            </div> */}
+            </div> 
 
         </div>
     );

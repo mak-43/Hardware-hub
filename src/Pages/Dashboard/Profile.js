@@ -12,11 +12,11 @@ const Profile = () => {
 
     // const { email } = user?.email
 
-    const { isLoading, error, data: pro, refetch } = useQuery('modal', () => fetch(`https://git.heroku.com/morning-atoll-82384.git /userpro?email=${user?.email}`).then(res => res.json()))
+    const { isLoading, error, data: pro, refetch } = useQuery('modal', () => fetch(`https://morning-atoll-82384.herokuapp.com/userpro?email=${user?.email}`).then(res => res.json()))
     if (isLoading) {
         return <Loading />
     }
-
+  refetch()
 
     //   const {education,location,phone,linkdin}=pro[0]
 
@@ -31,10 +31,10 @@ const Profile = () => {
                     <div class="card-body ">
                         <div class="avatar ">
                             <div class="w-12 mx-auto my-5 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                <img src={user?.photoURL} />
+                                <img src={pro[0]?.img? pro[0]?.img:user?.photoURL } />
                             </div>
                         </div>
-                        <h2 class="card-title">{user?.displayName}</h2>
+                        <h2 class="card-title text-center">{user?.displayName}</h2>
                         <p><i class="fa-solid fa-envelope mr-2"></i>{user?.email}</p>
                         <p><i class="fa-solid fa-graduation-cap"></i> {pro[0]?.education}</p>
                         <p><i class="fa-solid fa-location-dot"></i> {pro[0]?.location}</p>

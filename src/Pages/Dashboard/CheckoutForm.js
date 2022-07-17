@@ -15,7 +15,7 @@ const CheckoutForm = ({ order }) => {
     const [clientSecret, setClientSecret] = useState('')
 
     useEffect(() => {
-        fetch(`https://git.heroku.com/morning-atoll-82384.git /create-payment-intent`, {
+        fetch(`https://morning-atoll-82384.herokuapp.com/create-payment-intent`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -81,7 +81,7 @@ const CheckoutForm = ({ order }) => {
                 id: _id,
                 tid: paymentIntent.id
             }
-            fetch(`https://git.heroku.com/morning-atoll-82384.git /payment/${_id}`, {
+            fetch(`https://morning-atoll-82384.herokuapp.com/payment/${_id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json',
